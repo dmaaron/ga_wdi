@@ -1,28 +1,26 @@
-class BasicCalculator
-	def calculate(resp, first, second)
-		case resp
-		when "a"
-		  first + second
-		when "s"
-		  first - second
-		when "m"
-		  first * second
-		when "d"
-		  first / second
-		end
-	end
+def simple_calculate(resp, first, second)
+  case resp
+  when "a"
+    first + second
+  when "s"
+    first - second
+  when "m"
+    first * second
+  when "d"
+    first / second
+  when "q"
+    main_menu
+  end
+end
 
-	def menu
-	  print "(a)dd, (s)ubtract, (m)ultiple, (d)ivide: "
-	  resp = gets.chomp
-	  
-	  validate_options(resp, ["a", "s", "m", "d"])
-
-	  print "First number: "
-	  first = gets.chomp.to_f
-	  print "Second number: "
-	  second = gets.chomp.to_f
-
-	  puts calculate(resp, first, second)
-	end
+def basiccalc
+  print "(a)dd, (s)ubtract, (m)ultiple, (d)ivide:, (q)uit to main: "
+  resp = gets.chomp
+  resp = validate_options(resp, ["a", "s", "m", "d", "q"])
+  print "First number: "
+  first_num = gets.chomp
+  print "Second number: "
+  second_num = gets.chomp
+  puts simple_calculate(resp, first_num, second_num)
+  main_menu
 end

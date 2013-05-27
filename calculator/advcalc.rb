@@ -1,50 +1,25 @@
-require_relative 'basic_calculator'
-
-def validate_options(resp, options)
-	while !options.include? resp
-	  puts "Enter valid option"
-	  resp = gets.chomp
-	end	
+def power(first, second)
+  first ** second
 end
 
-def advanced_calculator
-  print "(p)ower, (s)qrt: "
+def sqrt(first)
+  Math.sqrt(first)
+end
+
+def advcalc
+  print "(p)ower, (s)qrt: (q)uit to main "
   resp = gets.chomp
-  
-  validate_options(resp, ["p", "s"])
-  
+  resp = validate_options(resp, ["p", "s","q"])
   if resp == "p"
     print "First number: "
-    first = gets.chomp.to_f
+    first_num = gets.chomp
     print "Second number: "
-    second = gets.chomp.to_f
-
-    puts first ** second
-
-  elsif resp == "s"
-    print "The number: "
-    number = gets.chomp.to_f
-
-    puts Math.sqrt(number)
+    second_num = gets.chomp
+    puts power(first_num, second_num)
+  else 
+    print "What number?: "
+    first_num = gets.chomp
+    puts sqrt(first_num)
   end
+  main_menu
 end
-
-def menu
-  print "(b)asic, (a)dvanced, (q)uit: "
-  ans = gets.chomp
-
-  while ans != "q"
-    case ans
-    when "b"
-      BasicCalculator.new.menu
-    when "a"
-      advanced_calculator
-    when "q"
-      puts "Quitting"
-    end
-    print "(b)asic, (a)dvanced, (q)uit: "
-    ans = gets.chomp
-  end
-end
-
-menu
